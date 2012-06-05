@@ -10,6 +10,7 @@
 		$CF_On_Email = get_option('CF_On_Email');
 		$CF_On_Message = get_option('CF_On_Message');
 		$CF_On_Subject = get_option('CF_On_Subject');
+		$CF_On_Captcha = get_option('CF_On_Captcha');
 		$CF_On_SendEmail = get_option('CF_On_SendEmail');
 		$CF_On_MyEmail = get_option('CF_On_MyEmail');
 		$CF_On_MySubject = get_option('CF_On_MySubject');
@@ -22,6 +23,7 @@
 			$CF_On_Email = stripslashes($_POST['CF_On_Email']);
 			$CF_On_Message = stripslashes($_POST['CF_On_Message']);
 			$CF_On_Subject = stripslashes($_POST['CF_On_Subject']);
+			$CF_On_Captcha = stripslashes($_POST['CF_On_Captcha']);
 			$CF_On_SendEmail = stripslashes($_POST['CF_On_SendEmail']);
 			$CF_On_MyEmail = stripslashes($_POST['CF_On_MyEmail']);
 			$CF_On_MySubject = stripslashes($_POST['CF_On_MySubject']);
@@ -31,6 +33,7 @@
 			update_option('CF_On_Email', $CF_On_Email );
 			update_option('CF_On_Message', $CF_On_Message );
 			update_option('CF_On_Subject', $CF_On_Subject );
+			update_option('CF_On_Captcha', $CF_On_Captcha );
 			update_option('CF_On_SendEmail', $CF_On_SendEmail );
 			update_option('CF_On_MyEmail', $CF_On_MyEmail );
 			update_option('CF_On_MySubject', $CF_On_MySubject );
@@ -89,6 +92,15 @@
 					</td>
 				</tr>
 				<tr>
+					<td align="left">
+						Captcha:
+					</td>
+					<td align="left">
+						<input type="radio" name="CF_On_Captcha" <?php if (strtoupper($CF_On_Captcha) == "YES") echo 'checked="checked"';  ?> value="YES">YES
+						<input type="radio" name="CF_On_Captcha" <?php if (strtoupper($CF_On_Captcha) == "NO") echo 'checked="checked"';  ?> value="NO">NO
+					</td>
+				</tr>
+				<tr>
 					<td>
 						<br /><br />
 						<h3>Contact form admin details</h3>
@@ -121,8 +133,12 @@
 	<br />
 	<hr />
 	<h2>Plugin Information</h2>		
-	<h3>Plugin short code for pages/post</h3>
-	<div style="padding-top:7px;padding-bottom:7px;">
-		<code style="padding:7px;">[Contact] </code>
+		<h3>Option 1. Drag and drop the widget!</h3>
+			Go to widget menu and drag and drop the "Contact Form" widget to your sidebar location.<br />
+		<h3>Option 2. Paste the below code to your desired template location.</h3>
+			<div style="padding-top:7px;padding-bottom:7px;">
+				<code style="padding:7px;">[Contact] </code>
+			</div>
+			<h4>Plugin short code for pages/post</h4>
 	</div>
 </div>

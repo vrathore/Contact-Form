@@ -38,6 +38,13 @@ function CFContents()
 
 	if (http_req.readyState == 4) {
 		if (http_req.status == 200) {
+			if(http_req.responseText == "Invalid security code."){
+				//alert(http_req.responseText);
+				result = http_req.responseText;
+				document.getElementById('CF_alertmessage').innerHTML = result;
+				document.getElementById("CF_captcha").value = "";
+			}
+			else {
 				alert(http_req.responseText);
 				result = http_req.responseText;
 				document.getElementById('CF_alertmessage').innerHTML = result;   
@@ -45,7 +52,9 @@ function CFContents()
 				document.getElementById("CF_name").value = "";
 				document.getElementById("CF_subject").value = "";
 				document.getElementById("CF_message").value = "";
-	 	} 
+				document.getElementById("CF_captcha").value = "";
+			}
+		} 
 		else {
 			alert('There was a problem with the request.');
 		}
@@ -71,7 +80,12 @@ function CF_submit(obj,url)
 		_s=document.getElementById("CF_subject");
 		str= str + "&CF_subject=" + encodeURI( document.getElementById("CF_subject").value ) 
 	}
+	if(document.getElementById("CF_captcha")){
+		_c=document.getElementById("CF_captcha");
+		str= str + "&CF_captcha=" + encodeURI( document.getElementById("CF_captcha").value ) 
+	}
 	
+	/* Validation */
 	if(document.getElementById("CF_name") && _n.value=="")
 	{
 		alert("Please enter the name.");
@@ -103,6 +117,13 @@ function CF_submit(obj,url)
 		_m.focus();
 		return false;    
 	}
+	else if(document.getElementById("CF_captcha") && _c.value=="")
+	{
+		alert("Please enter enter below security code.");
+		_c.focus();
+		return false;    
+	}
+
 
 	document.getElementById('CF_alertmessage').innerHTML = "Sending...";
 
